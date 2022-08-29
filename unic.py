@@ -34,13 +34,12 @@ class Substitution:
                 for _ in range(len(self.curr) + 1):
                     controller.tap(keyboard.Key.backspace)
                 controller.tap(self.symbols[k])
-                controller.tap(keyboard.Key.space)
             self.inp = False
             self.curr = []
 
     def run(self):
         with keyboard.Listener(
-                on_press= lambda key: self.on_press(key)) as listener:
+                on_press = self.on_press) as listener:
             try:
                 listener.join()
             except MyException as e:
