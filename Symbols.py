@@ -29,9 +29,16 @@ Symbols = {
     r'\e': '∃',
     r'\ne': '∄',
     r'\r': 'ℝ',
+    r'\c': 'ℂ',
     r'\in': '∈',
     r'\leq': '≤',
     r'\geq': '≥',
-    r'\neq': '≠'
+    r'\neq': '≠',
+    r'\union': '∪',
+    r'\intersect': '∩',
+    r'\n': 'ℕ',
+    r'\subset': '⊂',
+    r'\emptyset': '∅',
+    r'\d': '∂',
+    r'\i': 'İ'
 }
-
