@@ -12,13 +12,14 @@ class Trie:
     def __init__(self):
         self.root = Node(False, {})
 
-    def add(self, key):
+    def add(self, key, value):
         curr = self.root
         for k in key:
             if k not in curr.children:
                 curr.children[k] = Node(False, {})
             curr = curr.children[k]
         curr.isterminal = True
+        curr.value = value
 
     def check(self, key):
         curr = self.root
@@ -53,29 +54,17 @@ class Trie:
 #     'a': Node(True)
 # })
 trie = Trie()
-trie.add('t')
-trie.add('to')
-trie.add('tool')
-trie.add('trir')
-trie.add('toolkit')
+from Symbols import Symbols
+trie = Trie()
+for k, v in Symbols.items():
+    trie.add(k, v)
 
+def search(root):
+    for ch in root.children:
+        # print(ch)
+        if root.children[ch].isterminal:
+            print(root.children[ch].value)
+        search(root.children[ch])
 
-
-# print(trie.complete(''))
-
-s = ''
-while True:
-    print(trie.complete(s))
-    s += input()
-
-# print()
-
-# def search(root):
-#     for ch in root.children:
-#         print(ch)
-#         if root.children[ch].isterminal:
-#             print('!')
-#         search(root.children[ch])
-
-# search(trie.root)
+search(trie.root)
  
