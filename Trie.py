@@ -29,13 +29,13 @@ class Trie:
             curr = curr.children[k]
         return curr.isterminal
 
-    def search(self, root, val=None, res=None):
+    def search(self, root, key=None, res=None):
         if root.isterminal:
-            res.append(''.join(val))
+            res.append((''.join(key), root.value))
         for ch in root.children:
-            val.append(ch)
-            self.search(root.children[ch], val, res)
-            val = []
+            key.append(ch)
+            self.search(root.children[ch], key, res)
+            key = []
     
     def complete(self, key):
         curr = self.root
@@ -46,25 +46,4 @@ class Trie:
         res = []
         self.search(curr, [], res)
         return res
-                
-
-
-# root = Node(False, {
-#     't': Node(True, {'o': Node(False, {'l': Node(True)})}, None),
-#     'a': Node(True)
-# })
-trie = Trie()
-from Symbols import Symbols
-trie = Trie()
-for k, v in Symbols.items():
-    trie.add(k, v)
-
-def search(root):
-    for ch in root.children:
-        # print(ch)
-        if root.children[ch].isterminal:
-            print(root.children[ch].value)
-        search(root.children[ch])
-
-search(trie.root)
  
