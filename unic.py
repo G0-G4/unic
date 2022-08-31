@@ -1,5 +1,10 @@
 from pynput import keyboard
 from Symbols import Symbols
+from Trie import Trie
+
+trie = Trie()
+for k, v in Symbols.items():
+    trie.add(k, v)
 
 class MyException(Exception): pass
 
@@ -26,13 +31,14 @@ class Substitution:
                 self.curr.append(key.char)
             print(key)
         if key == keyboard.Key.space and self.inp:
-            print(len(self.curr))
             k = ''.join(self.curr)
             print(k)
-            if k in self.symbols:
+            values = trie.complete(k)
+            print(values)
+            if values:
                 for _ in range(len(self.curr) + 2):
                     controller.tap(keyboard.Key.backspace)
-                controller.tap(self.symbols[k])
+                controller.tap(values[0][1])
             self.inp = False
             self.curr = []
 

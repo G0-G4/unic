@@ -1,5 +1,3 @@
-
-
 class Node:
 
     def __init__(self, isterminal, children=None, value=None):
@@ -46,4 +44,3 @@ class Trie:
         res = []
         self.search(curr, [], res)
         return res
- 
