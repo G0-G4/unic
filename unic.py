@@ -13,8 +13,6 @@ class Substitution:
         self.inp = False
 
     def on_press(self, key):
-        # if key == keyboard.Key.esc:
-        #     raise MyException(key)
         if key == keyboard.KeyCode.from_char('\\'):
             self.inp = True
         if self.inp and key == keyboard.Key.backspace:   
@@ -42,11 +40,6 @@ class Substitution:
         with keyboard.Listener(
                 on_press = self.on_press) as listener:
             listener.join()
-            
-            # try:
-            #     listener.join()
-            # except MyException as e:
-            #     print('{0} was pressed'.format(e.args[0]))
 
 s = Substitution()
 s.run()
