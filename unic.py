@@ -17,21 +17,22 @@ class Substitution:
         #     raise MyException(key)
         if key == keyboard.KeyCode.from_char('\\'):
             self.inp = True
-        if self.inp and key == keyboard.Key.backspace:
-            if self.curr[-1] == '\\':
-                self.inp = False
+        if self.inp and key == keyboard.Key.backspace:   
             if self.curr:
                 del self.curr[-1]
+            else:
+                self.inp = False
             
         if self.inp:
-            if hasattr(key, 'char'):
+            if hasattr(key, 'char') and key.char != '\\':
                 self.curr.append(key.char)
             print(key)
         if key == keyboard.Key.space and self.inp:
+            print(len(self.curr))
             k = ''.join(self.curr)
             print(k)
             if k in self.symbols:
-                for _ in range(len(self.curr) + 1):
+                for _ in range(len(self.curr) + 2):
                     controller.tap(keyboard.Key.backspace)
                 controller.tap(self.symbols[k])
             self.inp = False
