@@ -45,7 +45,7 @@ class Substitution:
             values = trie.complete(k)
             if values:
                 self.delete(len(self.curr) + 2)
-                self.controller.tap(values[0][1])
+                self.controller.type(values[0][1])
             self.status = ''
             self.curr = []
         if key == keyboard.Key.space and self.status == 'iter':
@@ -60,12 +60,13 @@ class Substitution:
                 self.i = 0
                 self.status = 'iter'
                 self.delete(len(self.curr) + 1)
-                self.controller.tap(self.complements[self.i][1])
+                self.controller.type(self.complements[self.i][1])
                 self.curr = []
         elif key == keyboard.Key.tab and self.status == 'iter':
             self.delete(2)
             self.i = (self.i + 1 ) % len(self.complements)
-            self.controller.tap(self.complements[self.i][1])
+            self.controller.type(self.complements[self.i][1])
+
 
 
 
